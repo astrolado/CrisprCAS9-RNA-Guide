@@ -1,7 +1,6 @@
 ##WIP##
 
-# CrisprCAS9-RNA-Guide
-Sample RNA guide coded to demonstrate understanding of 
+# DNA Sequencer from Gencode Raw DNA sequences
 
 To utilize, access 
 
