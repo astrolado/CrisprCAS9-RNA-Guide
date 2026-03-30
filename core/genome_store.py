@@ -21,4 +21,4 @@ class GenomeStore:
                 self.sequences[chrom] = "".join(seq)
 
     def get_sequence(self, chrom, start, end):
-        return self.sequences[chrom][start:end]
+        return self.sequences[chrom][start - 1:end]

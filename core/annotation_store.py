@@ -61,3 +61,25 @@ class AnnotationStore:
                 matches.append(feature)
 
         return matches
+
+    def summarize_region(self, chrom, start, end):
+        results = self.query_region(chrom, start, end)
+
+        genes = set()
+        transcripts = set()
+        exon_count = 0
+
+        for feature in results:
+            if feature["gene_name"]:
+                genes.add(feature["gene_name"])
+            if feature["transcript_id"]:
+                transcripts.add(feature["transcript_id"])
+            if feature["feature"] == "exon":
+                exon_count += 1
+
+        return {
+            "genes": sorted(genes),
+            "transcript_count": len(transcripts),
+            "exon_count": exon_count,
+            "feature_count": len(results),
+        }
