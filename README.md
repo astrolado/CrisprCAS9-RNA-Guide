@@ -1,6 +1,6 @@
 ##WIP##
 
-# DNA Sequencer from Gencode Raw DNA sequences
+# Local Python CLI for CRISPR guide RNA design: scans genomic regions, annotates gene/CDS overlap, evaluates off-targets, and ranks candidates.
 
 To utilize, access 
 
