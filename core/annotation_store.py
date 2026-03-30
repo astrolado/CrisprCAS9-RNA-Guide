@@ -33,7 +33,7 @@ class AnnotationStore:
 
                 chrom, source, feature, start, end, score, strand, frame, attributes = parts
 
-                if feature not in {"gene", "transcript", "exon"}:
+                if feature not in {"gene", "transcript", "exon", "CDS"}:
                     continue
 
                 attr_dict = self.parse_attributes(attributes)
@@ -46,6 +46,7 @@ class AnnotationStore:
                     "gene_id": attr_dict.get("gene_id"),
                     "gene_name": attr_dict.get("gene_name"),
                     "transcript_id": attr_dict.get("transcript_id"),
+                    "exon_number": attr_dict.get("exon_number"),
                 }
 
                 if chrom not in self.features:
@@ -68,6 +69,7 @@ class AnnotationStore:
         genes = set()
         transcripts = set()
         exon_count = 0
+        cds_count = 0
 
         for feature in results:
             if feature["gene_name"]:
@@ -76,10 +78,13 @@ class AnnotationStore:
                 transcripts.add(feature["transcript_id"])
             if feature["feature"] == "exon":
                 exon_count += 1
+            if feature["feature"] == "CDS":
+                cds_count += 1
 
         return {
             "genes": sorted(genes),
             "transcript_count": len(transcripts),
             "exon_count": exon_count,
+            "cds_count": cds_count,
             "feature_count": len(results),
         }

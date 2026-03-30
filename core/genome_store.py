@@ -15,10 +15,23 @@ class GenomeStore:
                     chrom = line.strip().split()[0][1:]
                     seq = []
                 else:
-                    seq.append(line.strip())
+                    seq.append(line.strip().upper())
 
             if chrom:
                 self.sequences[chrom] = "".join(seq)
 
     def get_sequence(self, chrom, start, end):
         return self.sequences[chrom][start - 1:end]
+
+    def count_selected_guides(self, guide_set):
+        counts = {guide: 0 for guide in guide_set}
+        k = 20
+
+        for chrom_seq in self.sequences.values():
+            n = len(chrom_seq)
+            for i in range(n - k + 1):
+                kmer = chrom_seq[i:i + k]
+                if kmer in counts:
+                    counts[kmer] += 1
+
+        return counts
