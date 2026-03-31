@@ -70,7 +70,6 @@ python -m genome_engine.cli.main \
   --diverse-top 10
 
 
-```md
 ### Sample Output
 
 | Rank | Guide Sequence | Strand | CDS Overlap | Off-targets (1mm) | Score |
