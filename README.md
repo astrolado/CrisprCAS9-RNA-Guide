@@ -70,9 +70,6 @@ python -m genome_engine.cli.main \
   --diverse-top 10
 
 
-
-Then show output:
-
 ```md
 ### Sample Output
 
